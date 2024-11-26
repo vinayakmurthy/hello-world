@@ -4,6 +4,9 @@ pipeline{
         maven 'MVN3'
         jdk "JDK11"
     }
+    environment{
+        TOMCAT_URL = 'http://184.72.102.195:8080/'
+    }
 
     stages{
         stage('fetch code'){
@@ -15,6 +18,15 @@ pipeline{
         stage('Build'){
             steps{
                 sh "mvn clean install"
+            }
+        }
+
+        stage('Deploy the artifact'){
+            steps{
+               withCredentials([usernamePassword(credentialsId: 'tomcat-deployer', usernameVariable: 'DEPLOYER_USER', passwordVariable: 'DEPLOYER_PASS')])
+               {
+                sh "curl --user $DEPLOYER_USER:$DEPLOYER_PASS --uploadfiles target/webapp/webapp.war $TOMCAT_URL/deploy?path=/myapp"
+               }
             }
         }
     }
