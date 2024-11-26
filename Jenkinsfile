@@ -15,13 +15,13 @@ pipeline{
             }
         }
         
-        stage('Build'){
+        stage('Build the code'){
             steps{
                 sh "mvn clean install"
             }
         }
 
-        stage('Deploy the artifact'){
+        stage('Deploy the artifact to tomcat'){
             steps{
                withCredentials([usernamePassword(credentialsId: 'tomcat-deployer', usernameVariable: 'DEPLOYER_USER', passwordVariable: 'DEPLOYER_PASS')])
                {
