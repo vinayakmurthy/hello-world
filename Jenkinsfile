@@ -6,6 +6,7 @@ pipeline{
     }
     environment{
         TOMCAT_URL = 'http://54.172.8.187:8080/'
+        artifact_path = '/var/lib/jenkins/workspace/FetchandBuild/webapp/target/webapp.war'
     }
 
     stages{
@@ -24,7 +25,7 @@ pipeline{
         stage('Deploy the artifact to tomcat'){
             steps{
                withCredentials([usernamePassword(credentialsId: 'tomcat-deployer', usernameVariable: 'DEPLOYER_USER', passwordVariable: 'DEPLOYER_PASS')]) {
-                sh "curl --user $DEPLOYER_USER:$DEPLOYER_PASS --upload-file target/webapp/webapp.war $TOMCAT_URL/deploy?path=/myapp"
+                sh "curl --user $DEPLOYER_USER:$DEPLOYER_PASS --upload-file $artifact_path $TOMCAT_URL/deploy?path=/myapp"
                }
             }
         }
