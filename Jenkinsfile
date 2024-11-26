@@ -25,7 +25,7 @@ pipeline{
             steps{
                withCredentials([usernamePassword(credentialsId: 'tomcat-deployer', usernameVariable: 'DEPLOYER_USER', passwordVariable: 'DEPLOYER_PASS')])
                {
-                sh "curl --user $DEPLOYER_USER:$DEPLOYER_PASS --uploadfiles target/webapp/webapp.war $TOMCAT_URL/deploy?path=/myapp"
+                sh "curl --user $DEPLOYER_USER:$DEPLOYER_PASS --upload-file target/webapp/webapp.war $TOMCAT_URL/deploy?path=/myapp"
                }
             }
         }
