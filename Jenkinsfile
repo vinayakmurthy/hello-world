@@ -20,9 +20,6 @@ pipeline{
                 sh "mvn clean install"
             }
         }
-        stage('permission'){
-            sh 'chmod 644 target/webapp/webapp.war'
-        }
 
         stage('Deploy the artifact to tomcat'){
             steps{
