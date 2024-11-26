@@ -26,7 +26,7 @@ pipeline{
             steps{
                withCredentials([usernamePassword(credentialsId: 'tomcat-deployer', usernameVariable: 'DEPLOYER_USER', passwordVariable: 'DEPLOYER_PASS')]) {
                 sh """
-                curl -X POST --user \$DEPLOYER_USER:\$DEPLOYER_PASS --upload-file $artifact_path \$TOMCAT_URL/manager/deploy?path=/myapp
+                curl -X POST --user \$DEPLOYER_USER:\$DEPLOYER_PASS --upload-file $artifact_path \$TOMCAT_URL/manager/text/deploy?path=/myapp
                 
                 """
                }
