@@ -62,7 +62,7 @@ pipeline{
         stage('deploy to docker container'){
             steps{
                 script{
-                    docker.image(DOCKER_IMAGE:latest).run(
+                    docker.image("$DOCKER_IMAGE:latest").run(
                         "-d",  "--name", "tomcat-cont:$BUILD_NUMBER", "-p", "8080:8080"
                     )
                 }
