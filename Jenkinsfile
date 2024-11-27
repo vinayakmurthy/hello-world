@@ -33,7 +33,7 @@ pipeline{
         //     }
         // }
 
-        stage('build the image'){
+        stage('build the tomcat image'){
             steps{
                 script{
                     dockerimage = docker.build("tomcat:$BUILD_NUMBER", ".")
