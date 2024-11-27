@@ -7,6 +7,9 @@ pipeline{
     environment{
         TOMCAT_URL = 'http://172.31.89.202:8080'
         artifact_path = '/var/lib/jenkins/workspace/FetchandBuild/webapp/target/webapp.war'
+        DOCKER_REGISTRY = "https://index.docker.io/v1/"
+        DOCKER_IMAGE = "coderhub1/tomcat"
+
     }
 
     stages{
@@ -39,7 +42,17 @@ pipeline{
             }
             steps{
                 script{
-                    dockerimage = docker.build("tomcat:$BUILD_NUMBER", ".")
+                    dockerimage = docker.build("${DOCKER_IMAGE}:$BUILD_NUMBER")
+                }
+            }
+        }
+
+        stage('push the image'){
+            steps{
+                script{
+                    withRegistry(DOCKER_REGISTRY, 'docker-hub-cred' )
+                    dockerimage.push("$BUILD_NUMBER")
+                    dockerimage.push("latest")
                 }
             }
         }
