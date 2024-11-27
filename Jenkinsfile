@@ -65,7 +65,7 @@ pipeline{
                     sh """
 
                     docker pull $DOCKER_IMAGE:$BUILD_NUMBER
-                    docker run -d --name tomcat-cont:$BUILD_NUMBER -p 8080:8080 $DOCKER_IMAGE:$BUILD_NUMBER
+                    docker run -d --name tomcat-cont-$BUILD_NUMBER -p 8080:8080 $DOCKER_IMAGE:$BUILD_NUMBER
                     
                     """
                 
