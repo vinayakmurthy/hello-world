@@ -63,7 +63,7 @@ pipeline{
             steps{
                 script{
                     sh """
-                    eval "docker rmi coderhub1/tomcat:{1..39}"
+                    
                     docker pull $DOCKER_IMAGE:$BUILD_NUMBER
                     docker run -d --name tomcat-cont -p 8080:8080 $DOCKER_IMAGE:$BUILD_NUMBER
                     
