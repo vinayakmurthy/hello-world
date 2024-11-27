@@ -1,31 +1,24 @@
-// Function called while clicking add button
-function add_item() {
+<form action="action_page.php">
+  <div class="container">
+    <h1>Register</h1>
+    <p>Please fill in this form to create an account.</p>
+    <hr>
 
-  // Getting box and ul by selecting id;
-  let item = document.getElementById(&quot;box&quot;);
-  let list_item = document.getElementById(&quot;list_item&quot;);
-  if(item.value != &quot;&quot;){
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="Enter Email" name="email" id="email" required>
 
-      // Creating element and adding value to it
-      let make_li = document.createElement(&quot;LI&quot;);
-      make_li.appendChild(document.createTextNode(item.value));
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
 
-      // Adding li to ul
-      list_item.appendChild(make_li);
+    <label for="psw-repeat"><b>Repeat Password</b></label>
+    <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+    <hr>
 
-      // Reset the value of box
-      item.value=&quot;&quot;
-      
-      // Delete a li item on click 
-      make_li.onclick = function(){
-        this.parentNode.removeChild(this);
-      }
+    <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+    <button type="submit" class="registerbtn">Register</button>
+  </div>
 
-  }
-  else{
-
-    // Alert msg when value of box is &quot;&quot; empty.
-    alert(&quot;plz add a value to item&quot;);
-  }
-
-}
+  <div class="container signin">
+    <p>Already have an account? <a href="#">Sign in</a>.</p>
+  </div>
+</form>
