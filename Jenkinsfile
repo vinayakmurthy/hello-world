@@ -58,5 +58,15 @@ pipeline{
                 }
             }
         }
+
+        stage('deploy to docker container'){
+            steps{
+                script{
+                    docker.image(dockerimage:latest).run(
+                        "-d",  "--name", "tomcat-cont:$BUILD_NUMBER", "-p", "8080:8080"
+                    )
+                }
+            }
+        }
     }
 }
