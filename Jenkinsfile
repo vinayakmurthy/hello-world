@@ -50,11 +50,18 @@ pipeline{
         stage('push the image'){
             steps{
                 script{
-                    docker.withRegistry(DOCKER_REGISTRY, 'docker-hub-cred' ){
+                    docker.withRegistry(DOCKER_REGISTRY, 'dockercred' ){
                        dockerimage.push("$BUILD_NUMBER")
                        dockerimage.push("latest") 
                     }
-  
+                }
+            }
+        }
+
+        stage('deploy to docker container'){
+            steps{
+                script{
+
                 }
             }
         }
