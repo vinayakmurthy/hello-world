@@ -7,7 +7,6 @@ pipeline{
     environment{
         TOMCAT_URL = 'http://172.31.89.202:8080'
         artifact_path = '/var/lib/jenkins/workspace/FetchandBuild/webapp/target/webapp.war'
-        DOCKER_HOST = "ssh://dockeradmin@172.31.83.7"
     }
 
     stages{
@@ -35,6 +34,9 @@ pipeline{
         // }
 
         stage('build the tomcat image'){
+            environment{
+                DOCKER_HOST = "ssh://dockeradmin@172.31.83.7"
+            }
             steps{
                 script{
                     dockerimage = docker.build("tomcat:$BUILD_NUMBER", ".")
