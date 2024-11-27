@@ -22,16 +22,16 @@ pipeline{
             }
         }
 
-        stage('Deploy the artifact to tomcat'){
-            steps{
-               withCredentials([usernamePassword(credentialsId: 'tomcat-deployer', usernameVariable: 'DEPLOYER_USER', passwordVariable: 'DEPLOYER_PASS')]) {
-                sh """
-                curl --user $DEPLOYER_USER:$DEPLOYER_PASS --upload-file $artifact_path $TOMCAT_URL/manager/text/deploy?path=/myapp.gcs.com
+        // stage('Deploy the artifact to tomcat'){
+        //     steps{
+        //        withCredentials([usernamePassword(credentialsId: 'tomcat-deployer', usernameVariable: 'DEPLOYER_USER', passwordVariable: 'DEPLOYER_PASS')]) {
+        //         sh """
+        //         curl --user $DEPLOYER_USER:$DEPLOYER_PASS --upload-file $artifact_path $TOMCAT_URL/manager/text/deploy?path=/myapp.gcs.com
                 
-                """
-               }
-            }
-        }
+        //         """
+        //        }
+        //     }
+        // }
 
         stage('build the image'){
             steps{
