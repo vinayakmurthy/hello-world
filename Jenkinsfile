@@ -57,13 +57,5 @@ pipeline{
                 }
             }
         }
-
-        stage('deploy to docker container'){
-            steps{
-                script{
-
-                }
-            }
-        }
     }
 }
