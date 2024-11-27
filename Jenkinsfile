@@ -9,6 +9,7 @@ pipeline{
         artifact_path = '/var/lib/jenkins/workspace/FetchandBuild/webapp/target/webapp.war'
         DOCKER_REGISTRY = "https://index.docker.io/v1/"
         DOCKER_IMAGE = "coderhub1/tomcat"
+        DOCKER_HOST = "ssh://dockeradmin@172.31.83.7"
 
     }
 
