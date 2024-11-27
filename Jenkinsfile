@@ -5,7 +5,7 @@ pipeline{
         jdk "JDK11"
     }
     environment{
-        TOMCAT_URL = 'http://54.196.56.119:8080'
+        TOMCAT_URL = 'http://172.31.89.202:8080'
         artifact_path = '/var/lib/jenkins/workspace/FetchandBuild/webapp/target/webapp.war'
     }
 
@@ -30,6 +30,14 @@ pipeline{
                 
                 """
                }
+            }
+        }
+
+        stage('build the image'){
+            steps{
+                script{
+                    dockerimage = docker.build("tomcat:$BUILD_NUMBER", ".")
+                }
             }
         }
     }
