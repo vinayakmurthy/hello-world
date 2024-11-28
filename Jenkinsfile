@@ -43,7 +43,7 @@ pipeline{
             }
             steps{
                 script{
-                    dockerimage = docker.build("${DOCKER_IMAGE}:$BUILD_NUMBER")
+                    dockerimage = docker.build("${DOCKER_IMAGE}:$BUILD_NUMBER", ".")
                 }
             }
         }
